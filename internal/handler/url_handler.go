@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/example/url-shortener/internal/model"
-	"github.com/example/url-shortener/internal/service"
+	"github.com/a-mancodesss/go-url-shortener/internal/model"
+	"github.com/a-mancodesss/go-url-shortener/internal/service"
 )
 
 type URLHandler struct {

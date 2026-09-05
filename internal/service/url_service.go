@@ -4,11 +4,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/example/url-shortener/internal/cache"
-	"github.com/example/url-shortener/internal/config"
-	"github.com/example/url-shortener/internal/model"
-	"github.com/example/url-shortener/internal/repository"
-	"github.com/example/url-shortener/internal/util"
+	"github.com/a-mancodesss/go-url-shortener/internal/cache"
+	"github.com/a-mancodesss/go-url-shortener/internal/config"
+	"github.com/a-mancodesss/go-url-shortener/internal/model"
+	"github.com/a-mancodesss/go-url-shortener/internal/repository"
+	"github.com/a-mancodesss/go-url-shortener/internal/util"
 )
 
 // URLService orchestrates shortening, cache, and persistence.

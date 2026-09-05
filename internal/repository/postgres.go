@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/example/url-shortener/internal/model"
+	"github.com/a-mancodesss/go-url-shortener/internal/model"
 )
 
 // PostgresRepo handles persistence for URL mappings.

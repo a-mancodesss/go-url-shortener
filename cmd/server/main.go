@@ -15,13 +15,13 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/redis/go-redis/v9"
 
-	"github.com/example/url-shortener/internal/cache"
-	"github.com/example/url-shortener/internal/config"
-	"github.com/example/url-shortener/internal/handler"
-	"github.com/example/url-shortener/internal/middleware"
-	"github.com/example/url-shortener/internal/repository"
-	"github.com/example/url-shortener/internal/service"
-	"github.com/example/url-shortener/internal/util"
+	"github.com/a-mancodesss/go-url-shortener/internal/cache"
+	"github.com/a-mancodesss/go-url-shortener/internal/config"
+	"github.com/a-mancodesss/go-url-shortener/internal/handler"
+	"github.com/a-mancodesss/go-url-shortener/internal/middleware"
+	"github.com/a-mancodesss/go-url-shortener/internal/repository"
+	"github.com/a-mancodesss/go-url-shortener/internal/service"
+	"github.com/a-mancodesss/go-url-shortener/internal/util"
 )
 
 func main() {

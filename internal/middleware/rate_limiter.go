@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/example/url-shortener/internal/cache"
+	"github.com/a-mancodesss/go-url-shortener/internal/cache"
 )
 
 // RateLimiter returns Gin middleware implementing fixed-window rate limiting via Redis.
