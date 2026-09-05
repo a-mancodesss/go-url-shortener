@@ -42,10 +42,10 @@ const (
 )
 
 type Snowflake struct {
-	mu        sync.Mutex
-	nodeID    int64
-	sequence  int64
-	lastTS    int64
+	mu       sync.Mutex
+	nodeID   int64
+	sequence int64
+	lastTS   int64
 }
 
 // NewSnowflake creates a generator for the given nodeID [0,1023].
@@ -61,13 +61,10 @@ func (s *Snowflake) NextID() int64 {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
-	ts := time.Now().UnixMilli()
-
-	if ts < s.lastTS {
+	ts := max(time.Now().UnixMilli(),
 		// Clock moved backwards — wait until catch-up or use last timestamp
 		// In production, you may want to log/alert and wait.
-		ts = s.lastTS
-	}
+		s.lastTS)
 
 	if ts == s.lastTS {
 		s.sequence = (s.sequence + 1) & maxSequence

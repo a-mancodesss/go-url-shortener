@@ -17,8 +17,8 @@ type Config struct {
 }
 
 type AppConfig struct {
-	Env       string // development | production
-	BaseURL   string // e.g. http://localhost:8080
+	Env             string // development | production
+	BaseURL         string // e.g. https://amanly.com
 	ShortCodeLength int
 }
 
@@ -58,7 +58,7 @@ func Load() *Config {
 	return &Config{
 		App: AppConfig{
 			Env:             env("APP_ENV", "development"),
-			BaseURL:         env("BASE_URL", "http://localhost:8080"),
+			BaseURL:         env("BASE_URL", "https://amanly.com"),
 			ShortCodeLength: envInt("SHORT_CODE_LENGTH", 7),
 		},
 		Server: ServerConfig{

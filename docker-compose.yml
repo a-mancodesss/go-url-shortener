@@ -6,7 +6,7 @@ services:
     environment:
       APP_ENV: development
       PORT: 8080
-      BASE_URL: http://localhost:8080
+      BASE_URL: https://amanly.com
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
       POSTGRES_USER: postgres

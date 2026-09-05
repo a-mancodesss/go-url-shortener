@@ -12,7 +12,7 @@ var alphabetMap map[byte]int
 
 func init() {
 	alphabetMap = make(map[byte]int, len(alphabet))
-	for i := 0; i < len(alphabet); i++ {
+	for i := range len(alphabet) {
 		alphabetMap[alphabet[i]] = i
 	}
 }
