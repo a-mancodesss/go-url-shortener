@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -17,9 +18,10 @@ type Config struct {
 }
 
 type AppConfig struct {
-	Env             string // development | production
-	BaseURL         string // e.g. https://amanly.com
-	ShortCodeLength int
+	Env                string // development | production
+	BaseURL            string // e.g. https://amanly.com
+	ShortCodeLength    int
+	CORSAllowedOrigins []string
 }
 
 type ServerConfig struct {
@@ -60,6 +62,13 @@ func Load() *Config {
 			Env:             env("APP_ENV", "development"),
 			BaseURL:         env("BASE_URL", "https://amanly.com"),
 			ShortCodeLength: envInt("SHORT_CODE_LENGTH", 7),
+			CORSAllowedOrigins: envList("CORS_ALLOWED_ORIGINS", []string{
+				"http://localhost:5173",
+				"http://127.0.0.1:5173",
+				"http://localhost:4173",
+				"http://127.0.0.1:4173",
+				"https://*.vercel.app",
+			}),
 		},
 		Server: ServerConfig{
 			Port:         env("PORT", "8080"),
@@ -91,6 +100,26 @@ func env(key, fallback string) string {
 		return v
 	}
 	return fallback
+}
+
+// envList parses a comma-separated env var, trimming whitespace and empty items.
+func envList(key string, fallback []string) []string {
+	raw := strings.TrimSpace(os.Getenv(key))
+	if raw == "" {
+		return fallback
+	}
+
+	parts := strings.Split(raw, ",")
+	values := make([]string, 0, len(parts))
+	for _, part := range parts {
+		if part = strings.TrimSpace(part); part != "" {
+			values = append(values, part)
+		}
+	}
+	if len(values) == 0 {
+		return fallback
+	}
+	return values
 }
 
 func envInt(key string, fallback int) int {

@@ -83,6 +83,7 @@ func main() {
 	r := gin.New()
 	r.Use(gin.Recovery())
 	r.Use(middleware.RequestLogger())
+	r.Use(middleware.CORS(cfg.App.CORSAllowedOrigins))
 
 	// Global rate limiter: 100 req/min per IP for API routes; looser for redirects
 	// Fine-tune per-route in production (e.g., stricter for POST /shorten)

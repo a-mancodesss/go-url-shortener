@@ -188,6 +188,21 @@ All via env vars (see `.env.example:1`):
 | `REDIS_TTL`                           | 24h                                            | Cache TTL                          |
 | `SNOWFLAKE_NODE_ID`                   | 1                                              | 0–1023, unique per instance        |
 | `APP_ENV`                             | development                                    | `production` sets Gin release mode |
+| `CORS_ALLOWED_ORIGINS`                | `http://localhost:5173`, `http://127.0.0.1:5173`, `http://localhost:4173`, `http://127.0.0.1:4173`, `https://*.vercel.app` | Comma-separated frontend origins allowed by CORS. Supports wildcard subdomains. Use `*` for any origin in local development only. |
+
+### CORS
+
+Browser clients must come from an origin listed in `CORS_ALLOWED_ORIGINS` (scheme + host + port). The defaults cover the Vite dev server on `:5173`, the preview server on `:4173`, and any subdomain of `vercel.app` (for Vercel preview/production deployments).
+
+```bash
+# Production example
+CORS_ALLOWED_ORIGINS=https://app.example.com,https://staging.example.com
+
+# Allow any Vercel deployment (e.g. my-app-git-main-user.vercel.app)
+CORS_ALLOWED_ORIGINS=https://*.vercel.app
+```
+
+Wildcards match subdomains only: `https://*.vercel.app` allows `https://my-app.vercel.app` but not `https://vercel.app` or lookalikes such as `https://vercel.app.evil.com`. Preflight `OPTIONS` requests are answered before the rate limiter, and `X-RateLimit-*` headers are exposed to JavaScript. Requests without an `Origin` header (curl, server-to-server) are unaffected.
 
 
 ---
